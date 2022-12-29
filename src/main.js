@@ -1,10 +1,10 @@
-import { makeRequest } from './api.js'
+import { loadApiData } from './api.js'
 import { getWordList, parseApiData } from './parse.js'
 
 export const solve = async () => {
   // TODO: Get puzzle date from URL.
 
-  const apiData = await makeRequest()
+  const apiData = await loadApiData()
   const wordList = getWordList(parseApiData(apiData))
 
   // TODO: Solve puzzle.
