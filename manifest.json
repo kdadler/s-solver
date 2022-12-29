@@ -13,14 +13,22 @@
     "default_popup": "index.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "scripts/background.js"
   },
   "content_scripts": [
     {
       "matches": ["https://squaredle.app/", "https://squaredle.app/*"],
-      "js": ["solver.js"],
+      "js": ["scripts/content_script.js"],
       "run_at": "document_start",
-      "all_frames": true
+      "all_frames": true,
+      "type": "module"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/main.js"],
+      "matches": ["https://squaredle.app/*"],
+      "use_dynamic_url": true
     }
   ]
 }
