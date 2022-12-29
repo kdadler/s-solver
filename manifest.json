@@ -4,7 +4,7 @@
   "manifest_version": 3,
   "version": "0.0",
   "author": "Kieran Adler",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "nativeMessaging"],
   "icons": {
     "128": "128.png"
   },
@@ -12,10 +12,13 @@
     "default_icon": "128.png",
     "default_popup": "index.html"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://squaredle.app/", "https://squaredle.app/*"],
-      "js": ["index.js"],
+      "js": ["solver.js"],
       "run_at": "document_start",
       "all_frames": true
     }
