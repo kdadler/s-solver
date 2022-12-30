@@ -17,6 +17,8 @@ export const parseApiData = apiData => {
 
 export const getWordList = puzzle => puzzle.wordScores.concat(puzzle.optionalWordScores)
 
+export const getBoard = puzzle => puzzle.board.map(row => row.split(''))
+
 export const decipherEncodedString = string => atob(Array.from(string).map(decodeCharFunction).join(''))
 
 export const decipherEncodedJsonString = string => JSON.parse(decipherEncodedString(string))

@@ -1,15 +1,19 @@
 import { loadApiData } from './api.js'
-import { getWordList, parseApiData } from './parse.js'
+import { getBoard, getWordList, parseApiData } from './parse.js'
+import { buildPaths } from './path.js'
 
 export const solve = async () => {
-  // TODO: Get puzzle date from URL.
+  const puzzle = parseApiData(await loadApiData())
+  const board = getBoard(puzzle)
+  const wordList = getWordList(puzzle)
 
-  const apiData = await loadApiData()
-  const wordList = getWordList(parseApiData(apiData))
+  console.log(board, wordList)
+
+  const paths = buildPaths({ board, wordList })
+
+  console.log(paths)
 
   // TODO: Solve puzzle.
-
-  console.log(wordList)
 }
 
 export const createMessageListener = () => {
