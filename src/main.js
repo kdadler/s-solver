@@ -1,21 +1,24 @@
 import { loadApiData } from './api.js'
-import { getBoard, getWordList, parseApiData } from './parse.js'
-import { buildPaths } from './path.js'
+import { getWordList, parseApiData } from './parse.js'
+import { enterWords } from './dom.js'
 
+/**
+ * Solve the puzzle.
+ *
+ * @returns {Promise<Array>}
+ */
 export const solve = async () => {
   const puzzle = parseApiData(await loadApiData())
-  const board = getBoard(puzzle)
   const wordList = getWordList(puzzle)
 
-  console.log(board, wordList)
+  enterWords(wordList)
 
-  const paths = buildPaths({ board, wordList })
-
-  console.log(paths)
-
-  // TODO: Solve puzzle.
+  return wordList
 }
 
+/**
+ * Creates listener for the message to run the solver.
+ */
 export const createMessageListener = () => {
   chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     if (request === 'run-s-solver') {
